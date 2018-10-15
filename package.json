@@ -1,0 +1,14 @@
+{
+  "name": "schiphol-app-ui",
+  "version": "1.0.0",
+  "description": "UI for schiphol-app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Selman Ercan",
+  "license": "ISC",
+  "dependencies": {
+    "d3": "^5.7.0"
+  }
+}
