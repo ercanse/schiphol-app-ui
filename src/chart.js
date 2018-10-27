@@ -24,27 +24,15 @@ class BarChart extends Component {
         }
 
         const svgWidth = 960, svgHeight = 500;
-
         const margin = {top: 20, right: 20, bottom: 30, left: 40},
             width = svgWidth - margin.left - margin.right,
             height = svgHeight - margin.top - margin.bottom;
-
-        const x = scaleBand()
-                .rangeRound([0, width])
-                .padding(0.1),
+        const x = scaleBand().rangeRound([0, width]).padding(0.1),
             y = scaleLinear().rangeRound([height, 0]);
 
-        var data = this.state.data[0];
-        var keys = [];
-        var values = [];
-        for (var key in data) {
-            keys.push(key);
-            values.push(data[key]);
-        }
-        console.log(keys);
-        console.log(values);
-        x.domain(keys);
-        y.domain([0, max(values)]);
+        var data = this.state.data;
+        x.domain(data.map(d => d.pier));
+        y.domain([0, max(data, d => d.flights)]);
 
         return <svg width={svgWidth} height={svgHeight}>
             <g transform={`translate(${margin.left}, ${margin.top})`}>
@@ -65,9 +53,9 @@ class BarChart extends Component {
                         key={d.pier}
                         className="bar"
                         x={x(d.pier)}
-                        y={y(d.frequency)}
+                        y={y(d.flights)}
                         width={x.bandwidth()}
-                        height={height - y(d.frequency)}
+                        height={height - y(d.flights)}
                     />
                 ))}
             </g>
