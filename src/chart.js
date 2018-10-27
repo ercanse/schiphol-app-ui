@@ -45,7 +45,12 @@ class BarChart extends Component {
                     <g ref={node => select(node).call(axisLeft(y).ticks(10))}/>
                     {}
                     <text transform="rotate(-90)" y="6" dy="0.71em" textAnchor="end">
-                        Frequency
+                        Flights
+                    </text>
+                </g>
+                <g>
+                    <text x={width - 20} y={height - 30} dy="0.71em" textAnchor="end">
+                        Pier
                     </text>
                 </g>
                 {data.map(d => (
