@@ -4,18 +4,34 @@ import {max} from 'd3-array';
 import {axisBottom, axisLeft} from 'd3-axis';
 import {select} from 'd3-selection';
 import axios from 'axios';
+import moment from 'moment';
+import PubSub from 'pubsub-js';
 
 import './chart.css';
 
 class BarChart extends Component {
     constructor(props) {
         super(props);
-        this.state = {data: []};
+        this.dateFormat = "YYYY-MM-DD";
+        this.state = {data: [], date: moment().format(this.dateFormat)};
+
         this.loadData();
+
+        var self = this;
+        var dateListener = function (msg, data) {
+            var date = moment(data).format(self.dateFormat);
+            self.setState({date: date});
+            self.loadData();
+        };
+        PubSub.subscribe('dateTopic', dateListener);
     }
 
     loadData() {
-        axios.get("http://localhost:8080/test").then(response => this.setState({data: response.data}));
+        axios.get("http://localhost:8080/test?date=" + this.state.date).then(response => this.setState({
+            data: response.data,
+            date: this.state.date
+        }));
+        console.log(this.state.date);
     }
 
     render() {
