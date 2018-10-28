@@ -27,7 +27,7 @@ class BarChart extends Component {
     }
 
     loadData() {
-        axios.get("http://localhost:8080/test?date=" + this.state.date).then(response => this.setState({
+        axios.get("http://localhost:8080/getFlightsByPierOnDate?date=" + this.state.date).then(response => this.setState({
             data: response.data
         }));
     }
