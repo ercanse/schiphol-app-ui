@@ -9,7 +9,7 @@ class DatePickerComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: moment()
+            date: moment().subtract(1, 'days')
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -23,11 +23,14 @@ class DatePickerComponent extends Component {
     }
 
     render() {
-        return <DatePicker
-            selected={this.state.date}
-            onChange={this.handleChange}
-            dateFormat={this.dateFormat}
-        />;
+        return <div>
+            <span><p>Selected date:</p></span>
+            <DatePicker
+                selected={this.state.date}
+                onChange={this.handleChange}
+                dateFormat={this.dateFormat}
+            />
+        </div>;
     }
 }
 

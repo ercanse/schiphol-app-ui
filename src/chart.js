@@ -13,7 +13,7 @@ class BarChart extends Component {
     constructor(props) {
         super(props);
         this.dateFormat = "YYYY-MM-DD";
-        this.state = {data: [], date: moment().format(this.dateFormat)};
+        this.state = {data: [], date: moment().subtract(1, 'days').format(this.dateFormat)};
 
         this.loadData();
 
@@ -28,15 +28,13 @@ class BarChart extends Component {
 
     loadData() {
         axios.get("http://localhost:8080/test?date=" + this.state.date).then(response => this.setState({
-            data: response.data,
-            date: this.state.date
+            data: response.data
         }));
-        console.log(this.state.date);
     }
 
     render() {
         if (this.state.data.length === 0) {
-            return <div>Loading...</div>;
+            return <div><p>No data found for {this.state.date}</p></div>;
         }
 
         const svgWidth = 960, svgHeight = 500;
