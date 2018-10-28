@@ -18,7 +18,6 @@ class DatePickerComponent extends Component {
         this.setState({
             date: date
         });
-        console.log(date);
         PubSub.publish('dateTopic', date);
     }
 
