@@ -68,7 +68,7 @@ class BarChart extends Component {
                     </text>
                 </g>
                 <g>
-                    <text x={width / 2} y={"y", 0 - (margin.top / 2)} dy="0.71em" textAnchor="middle"
+                    <text x={width / 2} y={0 - (margin.top / 2)} dy="0.71em" textAnchor="middle"
                           textDecoration="underline">
                         Flights by pier
                     </text>
