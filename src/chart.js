@@ -67,6 +67,12 @@ class BarChart extends Component {
                         Pier
                     </text>
                 </g>
+                <g>
+                    <text x={width / 2} y={"y", 0 - (margin.top / 2)} dy="0.71em" textAnchor="middle"
+                          textDecoration="underline">
+                        Flights by pier
+                    </text>
+                </g>
                 {data.map(d => (
                     <rect
                         key={d.pier}
