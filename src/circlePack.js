@@ -28,32 +28,50 @@ class CirclePack extends Component {
     }
 
     render() {
-        // var data = '{"name": "flare","children": [{"name": "display","children": [{"name": "DirtySprite","size": 8833},{"name": "LineSprite","size": 1732}]}]}';
-
         var data = {
-            "name": "Pier A",
+            "name": "Piers",
             "children": [
                 {
-                    "name": "Berlin",
-                    "size": 200
-                },
-                {
-                    "name": "Paris",
-                    "size": 100
-                }
-            ]
+                    "name": "Pier A",
+                    "children": [
+                        {
+                            "name": "Berlin",
+                            "size": 200
+                        },
+                        {
+                            "name": "Paris",
+                            "size": 100
+                        }
+                    ]
+                }, {
+                    "name": "Pier B",
+                    "children": [
+                        {
+                            "name": "London",
+                            "size": 300
+                        },
+                        {
+                            "name": "Oslo",
+                            "size": 50
+                        }
+                    ]
+                }]
         };
-        // data = JSON.stringify(data);
-        // console.log(data);
 
         return <div>
             <button className="btn btn-warning"
-                    onClick={this.toggle}>Toggle Short/Long data
+                    onClick={this.toggle.bind(this)}>Toggle Short/Long data
             </button>
             <div style={{width: '100%'}}>
                 <ReactD3Pack data={data}/>
             </div>
         </div>;
+    }
+
+    toggle() {
+        this.props.history.push({
+            pathname: "/chart"
+        });
     }
 }
 
