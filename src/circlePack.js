@@ -28,41 +28,60 @@ class CirclePack extends Component {
     }
 
     loadData() {
-        axios.get("http://localhost:8080/getFlightsByPierOnDate?date=" + this.state.date).then(response => this.setState({
+        axios.get("http://localhost:8080/getDestinationsByPierOnDate?date=" + this.state.date).then(response => this.setState({
             data: response.data
         }));
     }
 
+    processData() {
+        var circlePackData = {name: "Piers", children: []};
+
+        var data = this.state.data;
+        for (var key in data) {
+            var entry = data[key];
+            var children = [];
+            for (var item in entry) {
+                children.push({name: item, size: entry[item]});
+            }
+
+            var pierData = {name: key, children: children};
+            circlePackData.children.push(pierData);
+        }
+
+        return circlePackData;
+    }
+
     render() {
-        var data = {
-            "name": "Piers",
-            "children": [
-                {
-                    "name": "Pier A",
-                    "children": [
-                        {
-                            "name": "Berlin",
-                            "size": 200
-                        },
-                        {
-                            "name": "Paris",
-                            "size": 100
-                        }
-                    ]
-                }, {
-                    "name": "Pier B",
-                    "children": [
-                        {
-                            "name": "London",
-                            "size": 300
-                        },
-                        {
-                            "name": "Oslo",
-                            "size": 50
-                        }
-                    ]
-                }]
-        };
+        var data = this.processData();
+        // var data = {
+        //     "name": "Piers",
+        //     "children": [
+        //         {
+        //             "name": "Pier A",
+        //             "children": [
+        //                 {
+        //                     "name": "Berlin",
+        //                     "size": 200
+        //                 },
+        //                 {
+        //                     "name": "Paris",
+        //                     "size": 100
+        //                 }
+        //             ]
+        //         }, {
+        //             "name": "Pier B",
+        //             "children": [
+        //                 {
+        //                     "name": "London",
+        //                     "size": 300
+        //                 },
+        //                 {
+        //                     "name": "Oslo",
+        //                     "size": 50
+        //                 }
+        //             ]
+        //         }]
+        // };
 
         return <div>
             <div style={{width: '100%'}}>

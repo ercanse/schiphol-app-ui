@@ -70,7 +70,7 @@ var ReactD3Pack = createReactClass({
         // var parentNode = d3.select(ReactDOM.findDOMNode(this).parentElement);
         // console.log(parentNode);
         // var parentWidth = parentNode[0][0].offsetWidth;
-        this.w = this.h = this.r = 500;
+        this.w = this.h = this.r = 1200;
 
         // Ranges
         this.x = scaleLinear().range([0, this.r]);
