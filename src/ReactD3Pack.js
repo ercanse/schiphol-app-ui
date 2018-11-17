@@ -45,7 +45,6 @@ var ReactD3Pack = createReactClass({
         this.pack = d3.pack().size(function (d) {
             return d.data.size;
         }).radius(function (d) {
-            console.log(d);
             return d.data.size / 10;
         });
 

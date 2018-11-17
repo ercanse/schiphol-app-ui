@@ -13,17 +13,23 @@ class BarChart extends Component {
     constructor(props) {
         super(props);
         this.dateFormat = "YYYY-MM-DD";
-        this.state = {data: [], date: moment().subtract(1, 'days').format(this.dateFormat)};
-
+        this.state = {data: [], date: moment().subtract(1, 'days').format(this.dateFormat), token: null};
         this.loadData();
+    }
 
+    componentDidMount() {
         var self = this;
         var dateListener = function (msg, data) {
             var date = moment(data).format(self.dateFormat);
             self.setState({date: date});
             self.loadData();
         };
-        PubSub.subscribe('dateTopic', dateListener);
+        var token = PubSub.subscribe('dateTopic', dateListener);
+        self.setState({token: token});
+    }
+
+    componentWillUnmount() {
+        PubSub.unsubscribe(this.state.token);
     }
 
     loadData() {
