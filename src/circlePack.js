@@ -59,19 +59,10 @@ class CirclePack extends Component {
         };
 
         return <div>
-            <button className="btn btn-warning"
-                    onClick={this.toggle.bind(this)}>Toggle Short/Long data
-            </button>
             <div style={{width: '100%'}}>
                 <ReactD3Pack data={data}/>
             </div>
         </div>;
-    }
-
-    toggle() {
-        this.props.history.push({
-            pathname: "/chart"
-        });
     }
 }
 
