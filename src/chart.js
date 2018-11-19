@@ -6,6 +6,7 @@ import {select} from 'd3-selection';
 import axios from 'axios';
 import moment from 'moment';
 import PubSub from 'pubsub-js';
+import config from './config';
 
 import './chart.css';
 
@@ -33,7 +34,7 @@ class BarChart extends Component {
     }
 
     loadData() {
-        axios.get("http://localhost:8080/getFlightsByPierOnDate?date=" + this.state.date).then(response => this.setState({
+        axios.get(config.backEndUrl + "getFlightsByPierOnDate?date=" + this.state.date).then(response => this.setState({
             data: response.data
         }));
     }

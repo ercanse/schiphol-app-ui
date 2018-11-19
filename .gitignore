@@ -33,6 +33,9 @@ yarn-error.log*
 # production
 /build
 
+# config
+src/config.js
+
 # misc
 .DS_Store
 .env.local

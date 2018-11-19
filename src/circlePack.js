@@ -3,6 +3,7 @@ import axios from 'axios';
 import moment from 'moment';
 import PubSub from 'pubsub-js';
 import ReactD3Pack from './ReactD3Pack';
+import config from './config';
 
 class CirclePack extends Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class CirclePack extends Component {
     }
 
     loadData() {
-        axios.get("http://localhost:8080/getDestinationsByPierOnDate?date=" + this.state.date).then(response => this.setState({
+        axios.get(config.backEndUrl + "getDestinationsByPierOnDate?date=" + this.state.date).then(response => this.setState({
             data: response.data
         }));
     }
@@ -53,36 +54,6 @@ class CirclePack extends Component {
 
     render() {
         var data = this.processData();
-        // var data = {
-        //     "name": "Piers",
-        //     "children": [
-        //         {
-        //             "name": "Pier A",
-        //             "children": [
-        //                 {
-        //                     "name": "Berlin",
-        //                     "size": 200
-        //                 },
-        //                 {
-        //                     "name": "Paris",
-        //                     "size": 100
-        //                 }
-        //             ]
-        //         }, {
-        //             "name": "Pier B",
-        //             "children": [
-        //                 {
-        //                     "name": "London",
-        //                     "size": 300
-        //                 },
-        //                 {
-        //                     "name": "Oslo",
-        //                     "size": 50
-        //                 }
-        //             ]
-        //         }]
-        // };
-
         return <div>
             <div style={{width: '100%'}}>
                 <ReactD3Pack data={data}/>
