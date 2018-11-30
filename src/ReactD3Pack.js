@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import {scaleLinear} from 'd3-scale';
 import * as d3 from "d3";
 
+import './circlePack.css';
+
 var createReactClass = require('create-react-class');
 
 var ReactD3Pack = createReactClass({
@@ -11,37 +13,29 @@ var ReactD3Pack = createReactClass({
         data: PropTypes.object
     },
 
-    // React component Mount
     componentDidMount: function () {
         this.initD3();
     },
 
-    // Components receive new props
     componentWillReceiveProps: function (nextProps) {
         this.loadData(nextProps);
     },
 
-    // Render
     render: function () {
         return <span></span>;
     },
 
-    // React Unmount
     componentWillUnmount: function () {
         clearInterval(this.resizeTimer);
     },
 
-    // Init D3 Layout
     initD3: function () {
-        // Create SVG elements
         this.vis = d3.select(ReactDOM.findDOMNode(this))
             .insert("svg:svg").append("svg:g");
 
         this.circlesGroup = this.vis.append("g");
         this.textsGroup = this.vis.append("g");
 
-        // Init pack layout
-        // this.pack = d3.pack().size([50, 50]);
         this.pack = d3.pack().size(function (d) {
             return d.data.size;
         }).radius(function (d) {
@@ -50,21 +44,17 @@ var ReactD3Pack = createReactClass({
 
         this.update();
 
-        // Load JSON and draw Chart
         // this.load(this.props);
         this.loadData(this.props);
 
-        // Click Event Handler (Zoom)
         d3.select(window).on("click", function () {
             this.zoom(this.data);
         }.bind(this));
 
-        //Resize event
         var ns = Math.random();
         d3.select(window).on('resize.' + ns, this.resizeHandler);
     },
 
-    // Update sizes and positions
     update: function () {
         // Set Width, Height and Radius (get size from parent div)
         // var parentNode = d3.select(ReactDOM.findDOMNode(this).parentElement);
@@ -72,14 +62,11 @@ var ReactD3Pack = createReactClass({
         // var parentWidth = parentNode[0][0].offsetWidth;
         this.w = this.h = this.r = 1200;
 
-        // Ranges
         this.x = scaleLinear().range([0, this.r]);
         this.y = scaleLinear().range([0, this.r]);
 
-        // Set Radius
         this.r = (this.w < this.h) ? this.w : this.h;
 
-        // Ranges
         this.x = scaleLinear().range([0, this.r]);
         this.y = scaleLinear().range([0, this.r]);
 
@@ -111,20 +98,14 @@ var ReactD3Pack = createReactClass({
         this.draw();
     },
 
-    // D3 Layout (enter-update-exit pattern)
     draw: function () {
         var startDelay = 0,
             elementDelay = 50;
-        // var startDelay = props.startDelay || 0,
-        //     elementDelay = props.elementDelay || 50;
 
-        // ---------------------------------------
-        // Circles: enter | update | exit
         var circles = this.circlesGroup.selectAll("circle")
             .data(this.nodes.descendants());
-        var color = d3.scaleSequential(d3.interpolateMagma).domain([8, 0]);
+        var color = d3.scaleSequential(d3.interpolateMagma).domain([2, 0]);
 
-        // Enter
         circles.enter().append("svg:circle")
             .attr("class", function (d) {
                 return d.children ? "parent" : "child";
@@ -146,7 +127,6 @@ var ReactD3Pack = createReactClass({
             }.bind(this))
             .transition().duration(400);
 
-        // Update
         circles.transition().duration(400)
             .delay(function (d, i) {
                 return startDelay + (i * elementDelay);
@@ -164,19 +144,15 @@ var ReactD3Pack = createReactClass({
                 return d.r;
             });
 
-        // Exit
         circles.exit().transition().duration(200)
             .attr("r", 0)
             .style("opacity", 0)
             .remove();
 
-        // ---------------------------------------
-        // Texts: enter | update | exit
         var texts = this.textsGroup
             .selectAll("text")
             .data(this.nodes.descendants());
 
-        // Enter
         texts.enter().append("svg:text")
             .style("opacity", 0)
             .attr("x", function (d) {
@@ -189,7 +165,6 @@ var ReactD3Pack = createReactClass({
             .attr("text-anchor", "middle")
             .transition().duration(400);
 
-        // Update
         texts.transition().duration(400)
             .attr("class", function (d) {
                 return d.children ? "parent" : "child";
@@ -210,13 +185,11 @@ var ReactD3Pack = createReactClass({
                 return d.data.name;
             });
 
-        // Exit
         texts.exit().transition().duration(200)
             .style("opacity", 0)
             .remove();
     },
 
-    // Zoom Layout on a specific area
     zoom: function (d, i) {
         var k = this.r / d.r / 2;
         this.x.domain([d.x - d.r, d.x + d.r]);
@@ -253,7 +226,6 @@ var ReactD3Pack = createReactClass({
         d3.event.stopPropagation();
     },
 
-    // Resize IDE handler
     resizeHandler: function () {
         clearInterval(this.resizeTimer);
         this.resizeTimer = setTimeout(function () {

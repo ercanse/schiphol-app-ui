@@ -1,0 +1,17 @@
+text.parent {
+    font-size: 16px;
+    fill: #1f77b4;
+}
+
+circle.parent {
+    fill-opacity: 0.5;
+}
+
+circle.parent:hover {
+    stroke: #73adde;
+    stroke-width: 2px;
+}
+
+circle.child {
+    pointer-events: none;
+}
