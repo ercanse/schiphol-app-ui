@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import PubSub from 'pubsub-js';
+import config from './config';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from "axios/index";
@@ -18,7 +19,7 @@ class DatePickerComponent extends Component {
     }
 
     loadData() {
-        axios.get("http://localhost:8080/getDates").then(response => this.setState({
+        axios.get(config.backEndUrl + "getDates").then(response => this.setState({
             highlightDates: response.data
         }));
     }
