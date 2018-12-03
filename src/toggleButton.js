@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PubSub from 'pubsub-js';
 
+import './toggleButton.css';
+
 const CHART = 'CHART';
 const CIRCLEPACK = 'CIRCLEPACK';
 
