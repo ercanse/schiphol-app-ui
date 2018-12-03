@@ -1,3 +1,14 @@
+## Demo
+
+See demo at http://18.216.85.76:4000/.
+
+## Description
+
+This project serves as the front end for the back end found at https://github.com/S-Ercan/schiphol-app.
+It visualizes data collected by the back end using the D3.js library.
+
+## Details
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
