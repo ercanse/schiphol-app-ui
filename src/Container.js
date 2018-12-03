@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Chart from './chart';
 import CirclePack from './circlePack';
+import PubSub from 'pubsub-js';
 
 const CHART = 'CHART';
 const CIRCLEPACK = 'CIRCLEPACK';
@@ -8,25 +9,22 @@ const CIRCLEPACK = 'CIRCLEPACK';
 class Container extends Component {
     constructor(props) {
         super(props);
-        this.state = {active: CIRCLEPACK};
+        this.state = {active: CIRCLEPACK, token: null};
     }
 
-    handleClick() {
-        var active = this.state.active;
-        var newActive = active === CHART ? CIRCLEPACK : CHART;
-        this.setState({
-            active: newActive
-        });
+    componentDidMount() {
+        var self = this;
+        var toggleListener = function (msg, data) {
+            self.setState({active: data});
+        };
+        var token = PubSub.subscribe('toggleTopic', toggleListener);
+        self.setState({token: token});
     }
 
     render() {
         var active = this.state.active;
-        var buttonText = active === CHART ? 'Switch to circle pack' : 'Switch to bar chart';
         return (
             <div>
-                <button type="button" onClick={this.handleClick.bind(this)}>
-                    {buttonText}
-                </button>
                 {active === CHART ? (
                     <Chart/>
                 ) : active === CIRCLEPACK ? (
