@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import PubSub from 'pubsub-js';
-import ReactD3Pack from './ReactD3Pack';
+import ReactD3Pack from './reactD3Pack';
 import config from './config';
 
 class CirclePack extends Component {
