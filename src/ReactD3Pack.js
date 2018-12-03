@@ -57,10 +57,11 @@ var ReactD3Pack = createReactClass({
 
     update: function () {
         // Set Width, Height and Radius (get size from parent div)
-        // var parentNode = d3.select(ReactDOM.findDOMNode(this).parentElement);
-        // console.log(parentNode);
-        // var parentWidth = parentNode[0][0].offsetWidth;
-        this.w = this.h = this.r = 1200;
+        var parentNode = d3.select(ReactDOM.findDOMNode(this).parentElement);
+        console.log(parentNode);
+        var parentWidth = parentNode._groups[0][0].offsetWidth;
+        // this.w = this.h = this.r = 1200;
+        this.w = this.h = this.r = parentWidth;
 
         this.x = scaleLinear().range([0, this.r]);
         this.y = scaleLinear().range([0, this.r]);

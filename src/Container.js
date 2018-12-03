@@ -5,7 +5,7 @@ import CirclePack from './circlePack';
 class Container extends Component {
     constructor(props) {
         super(props);
-        this.state = {active: "CHART"};
+        this.state = {active: "CIRCLEPACK"};
     }
 
     handleClick() {

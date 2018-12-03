@@ -55,7 +55,7 @@ class CirclePack extends Component {
     render() {
         var data = this.processData();
         return <div>
-            <div style={{width: '100%'}}>
+            <div style={{width: '85%'}}>
                 <ReactD3Pack data={data}/>
             </div>
         </div>;
