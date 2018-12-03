@@ -56,6 +56,7 @@ class CirclePack extends Component {
         var data = this.processData();
         return <div>
             <div style={{width: '85%'}}>
+                <p>Destinations by pier</p>
                 <ReactD3Pack data={data}/>
             </div>
         </div>;
