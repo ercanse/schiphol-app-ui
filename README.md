@@ -8,7 +8,18 @@ This project serves as the front end for the back end found at https://github.co
 <br />
 It visualizes data collected by the back end using the [D3.js library](https://d3js.org/).
 <br />
-The demo runs on an AWS EC2 instance.
+The demo runs on an [AWS EC2](https://aws.amazon.com/ec2/) instance.
+
+The application contains two different visualizations based on data collected using the Schiphol [Flight API](https://www.schiphol.nl/en/developer-center/page/our-flight-api-explored/).
+<br />
+The first is a _circle packing_ visualization that shows the number of origins/destinations grouped by pier. Circles can be zoomed in on by clicking on them. A circle for a country is larger if there are more flights coming from/going to that country.
+<br />
+The second is a _bar chart_ showing the number of flights per pier.
+
+
+The `Switch to...` button on top can be used to toggle between these two views.
+<br />
+Both of these visualizations are for a specific day - this day can be selected using the `Selected date` date picker component.
 
 ## Details
 
