@@ -10,6 +10,17 @@ It visualizes data collected by the back end using the [D3.js library](https://d
 <br />
 The demo runs on an AWS EC2 instance.
 
+The application contains two different visualizations based on data collected using the Schiphol API.
+<br />
+The first is a _circle packing_ visualization that shows the number of origins/destinations grouped by pier. A circle for a country is larger if there are more flights coming from/going to that country.
+<br />
+The second is a _bar chart_ showing the number of flights per pier.
+
+
+The `Switch to...` button on top can be used to toggle between these two views.
+<br />
+Both of these visualizations are for a specific day - this day can be selected using the `Selected date` date picker component.
+
 ## Details
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
