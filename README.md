@@ -12,7 +12,7 @@ The demo runs on an [AWS EC2](https://aws.amazon.com/ec2/) instance.
 
 The application contains two different visualizations based on data collected using the Schiphol [Flight API](https://www.schiphol.nl/en/developer-center/page/our-flight-api-explored/).
 <br />
-The first is a _circle packing_ visualization that shows the number of origins/destinations grouped by pier. A circle for a country is larger if there are more flights coming from/going to that country.
+The first is a _circle packing_ visualization that shows the number of origins/destinations grouped by pier. Circles can be zoomed in on by clicking on them. A circle for a country is larger if there are more flights coming from/going to that country.
 <br />
 The second is a _bar chart_ showing the number of flights per pier.
 
