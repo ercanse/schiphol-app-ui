@@ -9,7 +9,11 @@ class CirclePack extends Component {
     constructor(props) {
         super(props);
         this.dateFormat = "YYYY-MM-DD";
-        this.state = {data: [], date: moment().subtract(1, 'days').format(this.dateFormat), token: null};
+        var date = moment().subtract(1, 'days');
+        if ("date" in props) {
+            date = props.date;
+        }
+        this.state = {data: [], date: date.format(this.dateFormat), token: null};
         this.loadData();
     }
 
